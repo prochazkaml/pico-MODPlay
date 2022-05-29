@@ -22,6 +22,8 @@ And it is still quite CPU intensive (when measuring the LED with a high-speed ca
 but extra headroom is recommended for smooth operation), so it is recommended to dedicate the entire second core to MODPlay if possible
 (unless you either overclock the Pico or implement some kind of clever (and fast!) task-switching).
 
+The first core is also always woken up 44100 times per second so that it can update the PWM peripheral with the rendered audio. It could be done better (mainly with a DMA), but for a simple demo, this approach works fine.
+
 ## Building instructions
 
 Just paste these commands into a Linux shell after you have installed the [Raspberry Pi Pico C/C++ SDK](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html).
