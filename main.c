@@ -12,7 +12,7 @@
 #include "tune.h"
 
 /*
- * Rules for picking the right audio pins:
+ * Rules for picking the correct audio pins:
  * - The left channel pin must have an even number, the right one must have an odd number.
  * - They must be consecutive.
  * 
