@@ -78,11 +78,11 @@ int main() {
 	gpio_set_function(AUDIO_L, GPIO_FUNC_PWM);
 	gpio_set_function(AUDIO_R, GPIO_FUNC_PWM);
 
-    pwm_clear_irq(AUDIO_SLICE);
-    pwm_set_irq_enabled(AUDIO_SLICE, true);
+	pwm_clear_irq(AUDIO_SLICE);
+	pwm_set_irq_enabled(AUDIO_SLICE, true);
 
-    irq_set_exclusive_handler(PWM_IRQ_WRAP, pwm_interrupt_handler); 
-    irq_set_enabled(PWM_IRQ_WRAP, true);
+	irq_set_exclusive_handler(PWM_IRQ_WRAP, pwm_interrupt_handler); 
+	irq_set_enabled(PWM_IRQ_WRAP, true);
 
 	pwm_set_wrap(AUDIO_SLICE, clock_get_hz(clk_sys) / 44100);
 	pwm_set_enabled(AUDIO_SLICE, true);
