@@ -3,21 +3,24 @@
 A simple .mod player for the Raspberry Pi Pico based on my [MODPlay library](https://github.com/prochazkaml/MODPlay).
 
 In the default configuration, the audio buffer is 64 kB, as it also lights up the LED anytime it's rendering new audio, so the huge buffer is used to make the flashing more visible.
-Of course, you can tune it down to something more "sane" (1 kB should do the job just fine).
+Of course, you can tune it down to something more "sane" (1 kB should do the job just fine) and disable the LED.
+
+The audio is generated at 44.1 kHz and is internally calculated using 16 bit samples, which is then shifted down to 12 bits for PWM output (left channel is on pin 8, while the right channel is on pin 9).
 
 ## Why?
 
 Because I was bored.
 
-And because I needed to prove a point to my ICT teacher that my library could indeed run on a stock, non-overclocked Pico. That's all there is to it.
+And because I needed to prove a point to my ICT teacher that my library could indeed run on a stock, non-overclocked Pico.
 
 ## Limitations
 
 The main one is the available memory. As MODPlay modifies the song data when it's initialized, it has to be copied to RAM first, and there is not a ton of it on the Pico
 (measly 264 kilobytes, and not all of that is available for the song – some is taken up by the audio buffer, the stack etc.).
 
-And it is still quite CPU intensive, so you might just as well forget about the second core for any uses other than MODPlay while playing on a non-overclocked Pico.
-If you overclock, you might get some headroom for other stuff.
+And it is still quite CPU intensive (when measuring the LED with a high-speed camera, it yielded a result of <30 % CPU usage (buffer size = 64 kB = 16k stereo samples),
+but extra headroom is recommended for smooth operation), so it is recommended to dedicate the entire second core to MODPlay if possible
+(unless you either overclock the Pico or implement some kind of clever (and fast!) task-switching).
 
 ## Building instructions
 
@@ -27,8 +30,8 @@ It will clone this repository, fetch the MODPlay submodule and build it. Of cour
 
 ```
 git clone --recurse-submodules https://github.com/prochazkaml/pico-MODPlay
-mkdir MODPlay/build
-cd MODPlay/build
+mkdir pico-MODPlay/build
+cd pico-MODPlay/build
 cmake ..
 make -j4
 ```
