@@ -47,4 +47,4 @@ Just plug your Pico into a free USB slot while holding down the BOOTSEL button, 
 
 ## Credits
 
-This repo contains (in `tune.h`) music from Sanity's Interference demo (composied by Virgill). Grab it [here](https://modarchive.org/index.php?request=view_by_moduleid&query=68804).
+This repo contains (in `tune.h`) music from Sanity's Interference demo (composed by Virgill). Grab it [here](https://modarchive.org/index.php?request=view_by_moduleid&query=68804).
