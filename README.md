@@ -7,6 +7,10 @@ Of course, you can tune it down to something more "sane" (1 kB should do the job
 
 The audio is generated at 44.1 kHz and is internally calculated using 16 bit samples, which is then shifted down to 12 bits for PWM output (left channel is on pin 8, while the right channel is on pin 9).
 
+## See it in action
+
+[Here's a demo of this program playing music from Sanity's Interference demo.](https://youtu.be/WsvjrJQ4Oxw)
+
 ## Why?
 
 Because I was bored.
