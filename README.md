@@ -7,6 +7,10 @@ Of course, you can tune it down to something more "sane" (1 kB should do the job
 
 The audio is generated at 44.1 kHz and is internally calculated using 16 bit samples, which is then shifted down to 12 bits for PWM output (left channel is on pin 8, while the right channel is on pin 9).
 
+## See it in action
+
+[Here's a demo of this program playing music from Sanity's Interference demo.](https://youtu.be/WsvjrJQ4Oxw)
+
 ## Why?
 
 Because I was bored.
@@ -21,6 +25,8 @@ The main one is the available memory. As MODPlay modifies the song data when it'
 And it is still quite CPU intensive (when measuring the LED with a high-speed camera, it yielded a result of <30 % CPU usage (buffer size = 64 kB = 16k stereo samples),
 but extra headroom is recommended for smooth operation), so it is recommended to dedicate the entire second core to MODPlay if possible
 (unless you either overclock the Pico or implement some kind of clever (and fast!) task-switching).
+
+The first core is also always woken up 44100 times per second so that it can update the PWM peripheral with the rendered audio. It could be done better (mainly with a DMA), but for a simple demo, this approach works fine.
 
 ## Building instructions
 
@@ -41,4 +47,4 @@ Just plug your Pico into a free USB slot while holding down the BOOTSEL button, 
 
 ## Credits
 
-This repo contains (in `tune.h`) music from Sanity's Interference demo (composied by Virgill). Grab it [here](https://modarchive.org/index.php?request=view_by_moduleid&query=68804).
+This repo contains (in `tune.h`) music from Sanity's Interference demo (composed by Virgill). Grab it [here](https://modarchive.org/index.php?request=view_by_moduleid&query=68804).
